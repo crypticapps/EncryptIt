@@ -18,4 +18,4 @@ is currenting in, using the format:
 
 <filename>-decrypted.txt
 
-Use this program at YOUR own risk, there is no safeguards for if you forget the password.
+Use this program at YOUR own risk, there are no safeguards for if you forget the password to a file.
