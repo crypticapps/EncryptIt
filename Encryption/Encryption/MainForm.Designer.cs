@@ -17,6 +17,7 @@ using System.Linq;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Collections;
  
 namespace Encryption
 {
@@ -27,6 +28,9 @@ namespace Encryption
 		public string outputEncrypt;
 		public string outputDecrypt;
 		public string pwd;
+		ArrayList initialFile = new ArrayList();
+		ArrayList onepass = new ArrayList();
+		ArrayList twopass = new ArrayList();
 		const int keysize = 256;
 		const string initVector = "x2if5h4kap1w48g3";
 		/// <summary>
@@ -300,15 +304,25 @@ namespace Encryption
 			String line;
 			StreamWriter sw = new StreamWriter(outputEncrypt);
 			string hash = getPasswordHash(pwd);
-			MessageBox.Show(hash);
 			try{
-				using (StreamReader sr = new StreamReader(fileEncrypt)){
+					StreamReader sr = new StreamReader(fileEncrypt);
 					while((line = sr.ReadLine()) != null){
-						sw.WriteLine(encrypt(line,hash));
+						initialFile.Add(line);
+					}
+					foreach (string pass1 in initialFile){
+						onepass.Add(encrypt(pass1, hash));
+					}
+					initialFile.Clear();
+					foreach (string pass2 in onepass){
+						twopass.Add(encrypt(pass2, hash));
+					}
+					onepass.Clear();
+					foreach (string pass3 in twopass){
+						sw.WriteLine(encrypt(pass3, hash));
 					}
 					sw.Close();
+					twopass.Clear();
 					MessageBox.Show("Location of encrypted file:\n"+outputEncrypt);
-				}
 			}
 			catch(Exception f){
 				MessageBox.Show(f.Message);
@@ -320,17 +334,30 @@ namespace Encryption
 			StreamWriter sw = new StreamWriter(outputDecrypt);
 			string hash = getPasswordHash(pwd);
 			try{
-				using (StreamReader sr = new StreamReader(fileDecrypt)){
+					StreamReader sr = new StreamReader(fileDecrypt);
 					while((line = sr.ReadLine()) != null){
-						sw.WriteLine(decrypt(line,hash));
+						initialFile.Add(line);
+					}
+					foreach (string pass1 in initialFile){
+						onepass.Add(decrypt(pass1, hash));
+					}
+					initialFile.Clear();
+					foreach (string pass2 in onepass){
+						twopass.Add(decrypt(pass2, hash));
+					}
+					onepass.Clear();
+					foreach (string pass3 in twopass){
+						sw.WriteLine(decrypt(pass3, hash));
 					}
 					sw.Close();
+					twopass.Clear();
 					MessageBox.Show("Location of decrypted file:\n"+outputDecrypt);
-				}
 			}
 			catch(Exception f){
-				MessageBox.Show(f.Message);
-				Debug.WriteLine(f.ToString());
+				string error = f.ToString();
+				sw.Close();
+				MessageBox.Show("Nuh-uh-uh, didn't say the magic word!\nFile Key incorrect");
+				File.Delete(outputDecrypt);
 			}
 		}
 		
