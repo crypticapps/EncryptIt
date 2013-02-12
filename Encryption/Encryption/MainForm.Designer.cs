@@ -356,7 +356,8 @@ namespace Encryption
 			catch(Exception f){
 				string error = f.ToString();
 				sw.Close();
-				MessageBox.Show("Nuh-uh-uh, didn't say the magic word!\nFile Key incorrect");
+				Form2 pwdIncorrect = new Form2();
+				pwdIncorrect.Show();
 				File.Delete(outputDecrypt);
 			}
 		}
