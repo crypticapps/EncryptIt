@@ -1,15 +1,15 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: alex.meyer
- * Date: 2/7/2013
- * Time: 1:59 PM
+ * Date: 7/3/2013
+ * Time: 2:17 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
 using System.Windows.Forms;
 
-namespace Encryption
+namespace EncryptIt
 {
 	/// <summary>
 	/// Class with program entry point.

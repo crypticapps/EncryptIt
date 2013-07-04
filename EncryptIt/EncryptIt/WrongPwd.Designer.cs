@@ -1,14 +1,14 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: alex.meyer
- * Date: 2/12/2013
- * Time: 2:32 PM
+ * Date: 7/3/2013
+ * Time: 2:24 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace Encryption
+namespace EncryptIt
 {
-	partial class Form2
+	partial class WrongPwd
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -36,7 +36,9 @@ namespace Encryption
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+			// 
+			// WrongPwd
+			// 
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
@@ -45,7 +47,6 @@ namespace Encryption
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
 			this.pictureBox1.Location = new System.Drawing.Point(13, 13);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(259, 223);
@@ -79,15 +80,13 @@ namespace Encryption
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.pictureBox1);
-			this.Name = "Form2";
-			this.Text = "Entered Key Incorrect";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
+			this.Text = "Entered Incorrect Key";
+			this.Name = "WrongPwd";
 		}
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		
-
 	}
 }

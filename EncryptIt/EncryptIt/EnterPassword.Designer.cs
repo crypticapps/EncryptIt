@@ -1,25 +1,15 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: alex.meyer
- * Date: 2/8/2013
- * Time: 8:14 AM
+ * Date: 7/3/2013
+ * Time: 2:24 PM
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-
-using System.Windows.Forms;
- 
-namespace Encryption
+namespace EncryptIt
 {
-	partial class Form1 : Form
+	partial class EnterPassword
 	{
-		public MainForm mainform;
-		string operation;
-		public void SetForm(MainForm main, string op){
-			mainform = main;
-			operation = op;			
-		}
-		
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
@@ -46,6 +36,9 @@ namespace Encryption
 		/// </summary>
 		private void InitializeComponent()
 		{
+			// 
+			// EnterPassword
+			// 
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -117,44 +110,17 @@ namespace Encryption
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
-			this.Name = "Form1";
-			this.Text = "Password Entry";
 			this.ResumeLayout(false);
 			this.PerformLayout();
+			this.Text = "Password Entry";
+			this.Name = "EnterPassword";
 		}
+		
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
-		
-		void Button2Click(object sender, System.EventArgs e)
-		{
-			this.Dispose();
-		}
-		
-		void Button1Click(object sender, System.EventArgs e)
-		{
-			if(textBox1.Text.Equals(textBox2.Text)){
-				mainform.pwd = textBox1.Text;
-				if(operation.Equals("encrypt")){
-					mainform.encryptFile();
-				}
-				else if(operation.Equals("decrypt")){
-					mainform.decryptFile();
-				}
-				
-				this.Dispose();
-			}
-			else{
-				MessageBox.Show("Passwords do not match, please try again");
-				textBox1.Text = "";
-				textBox2.Text = "";
-				textBox1.Focus();
-			}
-		}
-		
-		
 	}
 }
