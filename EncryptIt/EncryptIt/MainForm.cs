@@ -50,7 +50,7 @@ namespace EncryptIt
 			//
 		}
 		
-					//Encrypt File Dialog
+		//Encrypt File Dialog
 		void Button3Click(object sender, EventArgs e)
 		{
 			DialogResult fileChooser1 = openFileDialog1.ShowDialog();

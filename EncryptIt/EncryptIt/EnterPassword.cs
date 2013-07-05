@@ -40,19 +40,35 @@ namespace EncryptIt
 		
 		void Button1Click(object sender, System.EventArgs e)
 		{
+			checkForm();
+		}
+		
+		void EnterPassword_KeyDown(object sender, KeyEventArgs e){
+			if(e.KeyCode == Keys.Enter){
+				checkForm();
+			}
+		}
+			
+		void checkForm(){
 			if(textBox1.Text.Equals(textBox2.Text)){
-				foreach (char c in textBox1.Text){
-					pwd.AppendChar(c);
-				}
-				this.DialogResult = DialogResult.OK;
-				this.Dispose();
+				if(textBox1.Text.Equals("")){
+				   	MessageBox.Show("Your password cannot be blank, please try again");
+				   	textBox1.Focus();
+				   }
+				else{
+					foreach (char c in textBox1.Text){
+						pwd.AppendChar(c);
+						}
+					this.DialogResult = DialogResult.OK;
+					this.Dispose();
+					}
 			}
 			else{
 				MessageBox.Show("Passwords do not match, please try again");
 				textBox1.Text = "";
 				textBox2.Text = "";
 				textBox1.Focus();
-			}
+				}
 		}
 		
 		public SecureString getPassword(){

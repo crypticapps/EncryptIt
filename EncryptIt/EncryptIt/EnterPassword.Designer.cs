@@ -6,6 +6,9 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+ 
+ using System.Windows.Forms;
+ 
 namespace EncryptIt
 {
 	partial class EnterPassword
@@ -36,9 +39,6 @@ namespace EncryptIt
 		/// </summary>
 		private void InitializeComponent()
 		{
-			// 
-			// EnterPassword
-			// 
 			this.label1 = new System.Windows.Forms.Label();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -99,7 +99,7 @@ namespace EncryptIt
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
-			// Form1
+			// EnterPassword
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,10 +110,12 @@ namespace EncryptIt
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label1);
+			this.KeyPreview = true;
+			this.Name = "EnterPassword";
+			this.Text = "Password Entry";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterPassword_KeyDown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-			this.Text = "Password Entry";
-			this.Name = "EnterPassword";
 		}
 		
 		private System.Windows.Forms.Button button2;

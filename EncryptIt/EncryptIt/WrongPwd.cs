@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Resources;
 using System.Media;
+using System.IO;
 
 namespace EncryptIt
 {
@@ -27,9 +28,9 @@ namespace EncryptIt
 			InitializeComponent();
 			
 			System.Reflection.Assembly assem = this.GetType().Assembly;
-			ResourceManager rm = new System.Resources.ResourceManager("EncryptIt.Resource1",assem);
+			ResourceManager rm = new System.Resources.ResourceManager("EncryptIt.Resources",assem);
 			setPicture(rm);
-			playSound();
+			playSound(rm);
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
@@ -40,10 +41,10 @@ namespace EncryptIt
 			this.pictureBox1.Image = (Image) r.GetObject("YouDidn'tSayTheMagicWord");
 		}
 		
-		void playSound(){
-			System.Reflection.Assembly assem = System.Reflection.Assembly.GetExecutingAssembly();
-			System.IO.Stream stream = assem.GetManifestResourceStream("dn");
-			SoundPlayer player = new SoundPlayer(stream);
+		void playSound(ResourceManager r){
+			byte[] sound = (byte[])r.GetObject("dn");
+			MemoryStream stream = new MemoryStream(sound);
+    		SoundPlayer player = new SoundPlayer(stream);
 			player.Play();
 		}
 		
