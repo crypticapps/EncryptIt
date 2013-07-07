@@ -25,7 +25,7 @@ namespace EncryptIt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+			this.CenterToScreen();
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//

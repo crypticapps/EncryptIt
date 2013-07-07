@@ -44,22 +44,14 @@ namespace EncryptIt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
+			this.CenterToScreen();
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
 		
-		//Encrypt File Dialog
-		void Button3Click(object sender, EventArgs e)
-		{
-			DialogResult fileChooser1 = openFileDialog1.ShowDialog();
-			if(fileChooser1 == DialogResult.OK){
-				fileEncrypt = openFileDialog1.FileName;
-				textBox1.Text = fileEncrypt;
-				encryptFilePath(fileEncrypt);
-				}
-		}
+
 		
 		public void encryptFilePath(string path){
 			string[] breakup = path.Split('\\');
@@ -101,35 +93,83 @@ namespace EncryptIt
 			
 		}
 		
+		//Encrypt File Dialog
+		void Button3Click(object sender, EventArgs e)
+		{
+			DialogResult fileChooser1 = openFileDialog1.ShowDialog();
+			if(fileChooser1 == DialogResult.OK){
+				fileEncrypt = openFileDialog1.FileName;
+				enc_filename.Text = fileEncrypt;
+				encryptFilePath(fileEncrypt);
+				}
+			tabControl1.Focus();
+		}
+		
 		//Decrypt File Dialog
 		void Button4Click(object sender, EventArgs e)
 		{
 			DialogResult fileChooser2 = openFileDialog1.ShowDialog();
 			if(fileChooser2 == DialogResult.OK){
 				fileDecrypt = openFileDialog1.FileName;
-				textBox2.Text = fileDecrypt;
+				dec_filename.Text = fileDecrypt;
 				decryptFilePath(fileDecrypt);
 				}
+			tabControl1.Focus();
 		}
 		
 		//Encrypt Button
 		void Button2Click(object sender, EventArgs e)
 		{
-			EnterPassword enterPass = new EnterPassword();
-			if(enterPass.ShowDialog() == DialogResult.OK){
-				pwd = enterPass.getPassword();
-				encryptFile();
-			}
 			
+			checkEncFilename();
 		}
 		
 		//Decrypt Button
 		void Button1Click(object sender, EventArgs e)
 		{
-			EnterPassword enterPass = new EnterPassword();
-			if(enterPass.ShowDialog() == DialogResult.OK){
+			checkDecFilename();
+		}
+		
+		//Enter Key Listener
+		void tabControl1_KeyDown(object sender, KeyEventArgs e){
+			if(e.KeyCode == Keys.Enter){
+				int index = tabControl1.SelectedIndex;
+				if(index == 0){
+					checkEncFilename();
+				}
+				if(index == 1){
+					checkDecFilename();
+				}
+			}
+		}
+		
+		void checkEncFilename(){
+			string filename = enc_filename.Text;
+			if(filename.Equals("")){
+				MessageBox.Show("No File Chosen to Encrypt\nPlease Click on the Choose File Button");
+			}
+			else{
+				encryptFilePath(openFileDialog1.FileName);
+				EnterPassword enterPass = new EnterPassword();
+				if(enterPass.ShowDialog() == DialogResult.OK){
+				pwd = enterPass.getPassword();
+				encryptFile();
+				}
+			}
+		}
+		
+		void checkDecFilename(){
+			string filename = dec_filename.Text;
+			if(filename.Equals("")){
+				MessageBox.Show("No File Chosen to Decrypt\nPlease Click on the Choose File Button");
+			}
+			else{
+				decryptFilePath(openFileDialog1.FileName);
+				EnterPassword enterPass = new EnterPassword();
+				if(enterPass.ShowDialog() == DialogResult.OK){
 				pwd = enterPass.getPassword();
 				decryptFile();
+				}
 			}
 		}
 		
@@ -249,5 +289,16 @@ namespace EncryptIt
             return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
 		
+		
+		void ExitToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+		
+		void AboutEncryptItToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			About about = new About();
+			about.ShowDialog();
+		}
 	}
 }

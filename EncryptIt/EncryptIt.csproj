@@ -47,6 +47,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.cs" />
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="EnterPassword.cs" />
     <Compile Include="EnterPassword.Designer.cs">
       <DependentUpon>EnterPassword.cs</DependentUpon>
@@ -63,6 +67,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EnterPassword.resx">
       <DependentUpon>EnterPassword.Designer.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,7 +26,7 @@ namespace EncryptIt
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
 			InitializeComponent();
-			
+			this.CenterToScreen();
 			System.Reflection.Assembly assem = this.GetType().Assembly;
 			ResourceManager rm = new System.Resources.ResourceManager("EncryptIt.Resources",assem);
 			setPicture(rm);
